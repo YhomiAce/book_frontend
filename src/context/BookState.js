@@ -3,7 +3,7 @@ import BookContext from './BookContext';
 import BookReducer from './BookReducer';
 import * as actionTypes from './action';
 import axios from 'axios';
-const url = "https://www.anapioficeandfire.com/api/books"
+const url = "http://localhost:8000/api/books"
 
 const BookState = props => {
     const initialState = {
@@ -16,8 +16,9 @@ const BookState = props => {
 
     const getBooks = async() =>{
         try {
-            const result = await axios.get(url)
-            dispatch({type:actionTypes.FETCH_BOOKS, payload: result.data})
+            const result = await axios.get(url);
+            console.log(result.data);
+            dispatch({type:actionTypes.FETCH_BOOKS, payload: result.data.data})
         } catch (error) {
             dispatch({type: actionTypes.ERROR, payload: error})
         }
@@ -31,6 +32,29 @@ const BookState = props => {
         dispatch({type: actionTypes.CLEAR_FILTER})
     }
 
+    const deleteBook = async(id) => {
+        try {
+            const deleteUrl = `http://localhost:8000/api/books/${id}`
+            const result = await axios.delete(deleteUrl);
+            console.log(result.data);
+            dispatch({type:actionTypes.DELETE_BOOK, payload: id})
+        } catch (error) {
+            dispatch({type: actionTypes.ERROR, payload: error})
+        }
+    }
+
+    const updateBook = async(id, payload) => {
+        try {
+            const deleteUrl = `http://localhost:8000/api/books/${id}`
+            const result = await axios.patch(deleteUrl, payload);
+            console.log(result.data);
+            dispatch({type:actionTypes.UPDATE_BOOK, payload: { id: id, book: result.data.data}});
+            // getBooks();
+        } catch (error) {
+            dispatch({type: actionTypes.ERROR, payload: error})
+        }
+    }
+
     return(
         <BookContext.Provider value={{
             books: state.books,
@@ -38,7 +62,9 @@ const BookState = props => {
             filtered: state.filtered,
             getBooks,
             filterBooks,
-            clearFilter
+            clearFilter,
+            deleteBook,
+            updateBook
         }}>
             {props.children}
         </BookContext.Provider>

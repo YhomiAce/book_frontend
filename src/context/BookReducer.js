@@ -26,6 +26,21 @@ const BookReducer = (state, action) =>{
                 ...state,
                 filtered: null
             }
+        case actionTypes.DELETE_BOOK:
+            return {
+                ...state,
+                books: state.books.filter(book => book.id !== action.payload )
+            }
+        case actionTypes.UPDATE_BOOK:
+            const index = state.books.findIndex(book => book.id === action.payload.id);
+            // console.log(action.payload.id, index);
+            const newArr = [...state.books];
+            newArr[index] = action.payload.book
+            console.log(newArr);
+            return {
+                ...state,
+                books: newArr
+            }
         default: return state;
     }
 }

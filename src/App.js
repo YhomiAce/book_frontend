@@ -1,16 +1,16 @@
 import React from 'react';
-import Output from './components/Output';
-import Search from './components/Search';
-import BookState from './context/BookState';
+import {Routes, BrowserRouter as Router, Route} from 'react-router-dom'
+import Books from './components/Books/Books';
+import EditBook from './components/Books/EditBook';
 
 const App = () => {
   return (
-    <BookState>
-      <div className="container mt-5">
-        <Search />
-        <Output />
-    </div>
-    </BookState>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Books />}/>
+          <Route path="/book/edit/:id" element={<EditBook />} />
+        </Routes>
+      </Router>
   );
 }
 

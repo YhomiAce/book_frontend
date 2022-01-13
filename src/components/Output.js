@@ -13,7 +13,7 @@ const Output = () => {
         getBooks();
     },[]);
     const [currentPage,setCurrentPage] = useState(1);
-    const [bookPerPage,setBookPerPage] = useState(5);
+    const [bookPerPage,setBookPerPage] = useState(10);
     
     if (loading) {
         return <Spinner />
@@ -38,6 +38,7 @@ const Output = () => {
                         <th>Pages</th>
                         <th>Country</th>
                         <th>Released</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,9 +48,10 @@ const Output = () => {
                                 <td> {book.name} </td>
                                 <td> {book.isbn} </td>
                                 <td> {book.authors} </td>
-                                <td> {book.numberOfPages} </td>
+                                <td> {book.number_of_pages} </td>
                                 <td> {book.country} </td>
                                 <td> {moment(book.released).format('YYYY-MM-DD')} </td>
+                                <td></td>
                             </tr>
                         )) :
                         CurrentBook.map( book => (
@@ -57,7 +59,7 @@ const Output = () => {
                                 <td> {book.name} </td>
                                 <td> {book.isbn} </td>
                                 <td> {book.authors} </td>
-                                <td> {book.numberOfPages} </td>
+                                <td> {book.number_of_pages} </td>
                                 <td> {book.country} </td>
                                 <td> {moment(book.released).format('YYYY-MM-DD')} </td>
                             </tr>
