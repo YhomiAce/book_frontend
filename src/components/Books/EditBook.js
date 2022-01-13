@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 import BookContext from "../../context/BookContext";
+const URL = 'http://localhost:8000';
 
 const EditBook = (props) => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const EditBook = (props) => {
   } = inputs;
 
   const fetchBookById = async () => {
-    const url = `http://localhost:8000/api/books/${id}`;
+    const url = `${URL}/api/books/${id}`;
     try {
       setLoading(true);
       const request = await axios.get(url);

@@ -1,15 +1,12 @@
-# ReadMe
+# Note: Make sure your server is running before starting this application.
 
-## Clone the project from repository
-## run "npm install" to install the dependency
-## run "npm start" to view application in the browser
+## To configure server see this repository: https://github.com/YhomiAce/bookApi.git
 
-# About Project
-### I used react hooks and context for state management
-### Used bootstrap for styling
-### used axios for fetch
-### used moment js to format date
+## Application Setup process
 
-## Name: Kareem Lateef Yomi
-## Email: kareemyomi91@gmail.com
-## Phone: 08101028981
+###### git clone https://github.com/YhomiAce/book_frontend.git
+###### cd into your project
+###### npm install
+###### Go Into the src/context/BookState.js change the URL to the url your local server is running
+###### Go Into the src/components/Books/EditBook.js change the URL to the url your local server is running
+###### run "npm start" to start testing the requirement 3 functionality

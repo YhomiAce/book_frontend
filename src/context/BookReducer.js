@@ -11,7 +11,7 @@ const BookReducer = (state, action) =>{
         case actionTypes.ERROR:
             return{
                 ...state,
-                loading: false
+                loading: true
             }
         case actionTypes.FILTER_BOOKS:
            return {
@@ -33,7 +33,6 @@ const BookReducer = (state, action) =>{
             }
         case actionTypes.UPDATE_BOOK:
             const index = state.books.findIndex(book => book.id === action.payload.id);
-            // console.log(action.payload.id, index);
             const newArr = [...state.books];
             newArr[index] = action.payload.book
             console.log(newArr);

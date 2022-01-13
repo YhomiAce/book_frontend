@@ -3,7 +3,7 @@ import BookContext from './BookContext';
 import BookReducer from './BookReducer';
 import * as actionTypes from './action';
 import axios from 'axios';
-const url = "http://localhost:8000/api/books"
+const URL = "http://localhost:8000"
 
 const BookState = props => {
     const initialState = {
@@ -16,6 +16,7 @@ const BookState = props => {
 
     const getBooks = async() =>{
         try {
+            const url = `${URL}/api/books`
             const result = await axios.get(url);
             console.log(result.data);
             dispatch({type:actionTypes.FETCH_BOOKS, payload: result.data.data})
@@ -34,7 +35,7 @@ const BookState = props => {
 
     const deleteBook = async(id) => {
         try {
-            const deleteUrl = `http://localhost:8000/api/books/${id}`
+            const deleteUrl = `${URL}/api/books/${id}`
             const result = await axios.delete(deleteUrl);
             console.log(result.data);
             dispatch({type:actionTypes.DELETE_BOOK, payload: id})
@@ -45,7 +46,7 @@ const BookState = props => {
 
     const updateBook = async(id, payload) => {
         try {
-            const deleteUrl = `http://localhost:8000/api/books/${id}`
+            const deleteUrl = `${URL}/api/books/${id}`
             const result = await axios.patch(deleteUrl, payload);
             console.log(result.data);
             dispatch({type:actionTypes.UPDATE_BOOK, payload: { id: id, book: result.data.data}});
